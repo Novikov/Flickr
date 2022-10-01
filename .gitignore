@@ -1,0 +1,42 @@
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IntellijJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/**
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+classes/**
+target/**
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+output.json
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+
+# Mac OS
+.DS_Store
+
+# Gradle
+gradle-app.setting
+.gradletasknamecache
+.gradle/**
+build/**
+/captures
+
+# С++ files
+.cxx
+
+# Log/OS Files
+*.log
+
+# Android Profiling
+*.hprof

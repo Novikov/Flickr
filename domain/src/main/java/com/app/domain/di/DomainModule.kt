@@ -2,5 +2,5 @@ package com.app.domain.di
 
 import dagger.Module
 
-@Module
+@Module(includes = [UseCaseModule::class])
 object DomainModule

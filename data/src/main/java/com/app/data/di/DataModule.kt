@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-@Module(includes = [DataBindsModule::class, GalleriesModule::class])
+@Module(includes = [DataSourceModule::class, GalleriesModule::class, RepositoryModule::class])
 object DataModule {
     @Provides
     fun provideMoshi(): Moshi {

@@ -1,6 +1,6 @@
-package com.app.data.api_service.galleries.di
+package com.app.data.remote_data_source.api_service.galleries.di
 
-import com.app.data.api_service.galleries.GalleriesApiService
+import com.app.data.remote_data_source.api_service.galleries.GalleriesApiService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.app.domain.models.galleries
+package com.app.domain.models.galleries.response
 
 data class Photos(
     val page: Long,

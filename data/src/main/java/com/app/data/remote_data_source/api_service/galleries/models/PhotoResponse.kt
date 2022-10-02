@@ -1,4 +1,4 @@
-package com.app.data.api_service.galleries.models
+package com.app.data.remote_data_source.api_service.galleries.models
 
 import com.squareup.moshi.Json
 

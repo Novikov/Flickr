@@ -3,7 +3,7 @@ package com.app.flickr.di
 import com.app.flickr.presentation.login.LoginFragment
 import dagger.Component
 
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent {
 
     @Component.Factory

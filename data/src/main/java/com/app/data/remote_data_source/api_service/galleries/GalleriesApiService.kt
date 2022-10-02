@@ -1,8 +1,8 @@
-package com.app.data.api_service.galleries
+package com.app.data.remote_data_source.api_service.galleries
 
-import com.app.data.api_service.galleries.models.PhotosResponse
-import com.app.data.network_const.ApiConst.API_BODY
-import com.app.data.network_const.ApiConst.INTERESTING_PHOTO_METHOD
+import com.app.data.remote_data_source.api_service.galleries.models.PhotosResponse
+import com.app.data.remote_data_source.network_const.ApiConst.API_BODY
+import com.app.data.remote_data_source.network_const.ApiConst.INTERESTING_PHOTO_METHOD
 import retrofit2.http.GET
 import retrofit2.http.Query
 

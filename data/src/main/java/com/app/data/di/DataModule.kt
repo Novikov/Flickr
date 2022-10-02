@@ -1,10 +1,10 @@
 package com.app.data.di
 
 import com.app.data.BuildConfig
-import com.app.data.api_service.galleries.di.GalleriesModule
-import com.app.data.network_const.Endpoint
-import com.app.data.network_const.Endpoints
-import com.app.data.network_const.NetworkConst
+import com.app.data.remote_data_source.api_service.galleries.di.GalleriesModule
+import com.app.data.remote_data_source.network_const.Endpoint
+import com.app.data.remote_data_source.network_const.Endpoints
+import com.app.data.remote_data_source.network_const.NetworkConst
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

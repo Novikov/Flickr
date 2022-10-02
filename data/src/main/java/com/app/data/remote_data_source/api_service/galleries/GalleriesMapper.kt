@@ -1,4 +1,4 @@
-package com.app.data.remote_data_source.mappers
+package com.app.data.remote_data_source.api_service.galleries
 
 import com.app.data.remote_data_source.api_service.galleries.models.PhotoResponse
 import com.app.data.remote_data_source.api_service.galleries.models.PhotosResponse

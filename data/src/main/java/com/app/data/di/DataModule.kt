@@ -1,10 +1,12 @@
 package com.app.data.di
 
 import com.app.data.BuildConfig
-import com.app.data.remote_data_source.api_service.galleries.di.GalleriesModule
+import com.app.data.local_data_source.di.LocalDataSourceModule
+import com.app.data.remote_data_source.data_source_impl.di.RemoteDataSourceModule
 import com.app.data.remote_data_source.network_const.Endpoint
 import com.app.data.remote_data_source.network_const.Endpoints
 import com.app.data.remote_data_source.network_const.NetworkConst
+import com.app.data.repository_impl.di.RepositoryModule
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -16,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-@Module(includes = [DataBindsModule::class, GalleriesModule::class])
+@Module(includes = [RemoteDataSourceModule::class, LocalDataSourceModule::class, RepositoryModule::class])
 object DataModule {
     @Provides
     fun provideMoshi(): Moshi {

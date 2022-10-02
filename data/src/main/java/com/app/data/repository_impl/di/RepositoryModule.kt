@@ -1,4 +1,4 @@
-package com.app.data.di
+package com.app.data.repository_impl.di
 
 import com.app.data.repository_impl.GalleriesRepositoryImpl
 import com.app.domain.repository_api.GalleriesRepository

@@ -1,0 +1,3 @@
+package com.app.data.local_data_source.local_data_source_api
+
+interface FlickrLocalApiDataSource

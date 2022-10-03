@@ -1,4 +1,4 @@
-package com.app.flickr.presentation.login
+package com.app.flickr.presentation.home
 
 import android.content.Context
 import android.os.Bundle
@@ -8,19 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.app.flickr.R
-import com.app.flickr.databinding.FragmentLoginBinding
+import com.app.flickr.databinding.FragmentHomeBinding
 import com.app.flickr.utils.appComponent
-import com.app.flickr.utils.ext.onClick
 import javax.inject.Inject
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
-
+class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
-    lateinit var loginViewModelFactory: LoginViewModel.Factory.NestedFactory
+    lateinit var loginViewModelFactory: HomeViewModel.Factory.NestedFactory
 
-    private var viewBinding: FragmentLoginBinding? = null
+    private var viewBinding: FragmentHomeBinding? = null
 
-    private val viewModel: LoginViewModel by viewModels {
+    private val viewModel: HomeViewModel by viewModels {
         loginViewModelFactory.create()
     }
 
@@ -34,15 +32,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = FragmentLoginBinding.inflate(inflater, container, false)
+        viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return viewBinding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewBinding?.button?.onClick {
-            viewModel.getRequestToken()
-        }
     }
 
     override fun onDestroyView() {

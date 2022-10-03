@@ -17,13 +17,7 @@ class GalleriesMapper @Inject constructor() {
             title = title,
             ispublic = ispublic,
             isfriend = isfriend,
-            isfamily = isfamily,
-            ownername = ownername,
-            realname = realname,
-            iconserver = iconserver,
-            iconfarm = iconfarm,
-            countFaves = countFaves,
-            countComments = countComments
+            isfamily = isfamily
         )
     }
 

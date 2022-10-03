@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentHomeBinding
+import com.app.flickr.presentation.home.adapter.PhotosAdapter
 import com.app.flickr.utils.appComponent
 import javax.inject.Inject
 
@@ -22,9 +24,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         loginViewModelFactory.create()
     }
 
+    private var photosAdapter: PhotosAdapter? = null
+
     override fun onAttach(context: Context) {
         requireContext().appComponent.inject(this)
         super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initAdapter()
+        viewModel.getInterestingnessPhotoList()
+    }
+
+    private fun initAdapter() {
+        photosAdapter = PhotosAdapter()
     }
 
     override fun onCreateView(
@@ -34,6 +48,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     ): View? {
         viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return viewBinding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+        setObservers()
+    }
+
+    private fun initRecycler() {
+        viewBinding?.photoRecycler?.layoutManager = LinearLayoutManager(context)
+        viewBinding?.photoRecycler?.adapter = photosAdapter
+    }
+
+    private fun setObservers() {
+        viewModel.photosLiveData.observe(viewLifecycleOwner) { content ->
+            photosAdapter?.setItems(content)
+        }
     }
 
     override fun onDestroyView() {

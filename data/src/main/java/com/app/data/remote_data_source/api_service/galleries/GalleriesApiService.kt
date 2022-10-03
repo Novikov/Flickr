@@ -1,6 +1,6 @@
 package com.app.data.remote_data_source.api_service.galleries
 
-import com.app.data.remote_data_source.api_service.galleries.models.PhotosResponse
+import com.app.data.remote_data_source.api_service.galleries.models.PhotosResultResponse
 import com.app.data.remote_data_source.network_const.ApiConst.API_BODY
 import com.app.data.remote_data_source.network_const.ApiConst.INTERESTING_PHOTO_METHOD
 import retrofit2.http.GET
@@ -16,5 +16,5 @@ interface GalleriesApiService {
         @Query("oauth_timestamp") oauthTimestamp: String = "",
         @Query("oauth_nonce") oauthNonce: String = "",
         @Query("oauth_signature") oauthSignature: String = ""
-    ): PhotosResponse
+    ): PhotosResultResponse
 }

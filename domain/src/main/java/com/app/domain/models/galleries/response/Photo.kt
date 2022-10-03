@@ -9,11 +9,5 @@ data class Photo(
     val title: String,
     val ispublic: Long,
     val isfriend: Long,
-    val isfamily: Long,
-    val ownername: String,
-    val realname: String? = null,
-    val iconserver: String,
-    val iconfarm: Long,
-    val countFaves: String,
-    val countComments: String
+    val isfamily: Long
 )

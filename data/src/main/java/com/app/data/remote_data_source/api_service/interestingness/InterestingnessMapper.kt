@@ -1,12 +1,12 @@
-package com.app.data.remote_data_source.api_service.galleries
+package com.app.data.remote_data_source.api_service.interestingness
 
-import com.app.data.remote_data_source.api_service.galleries.models.PhotoResponse
-import com.app.data.remote_data_source.api_service.galleries.models.PhotosResponse
-import com.app.domain.models.galleries.response.Photo
-import com.app.domain.models.galleries.response.Photos
+import com.app.data.remote_data_source.api_service.interestingness.models.PhotoResponse
+import com.app.data.remote_data_source.api_service.interestingness.models.PhotosResponse
+import com.app.domain.models.interestingness.response.Photo
+import com.app.domain.models.interestingness.response.Photos
 import javax.inject.Inject
 
-class GalleriesMapper @Inject constructor() {
+class InterestingnessMapper @Inject constructor() {
     private fun toPhoto(photoResponse: PhotoResponse): Photo = with(photoResponse) {
         return Photo(
             id = id,
@@ -17,13 +17,7 @@ class GalleriesMapper @Inject constructor() {
             title = title,
             ispublic = ispublic,
             isfriend = isfriend,
-            isfamily = isfamily,
-            ownername = ownername,
-            realname = realname,
-            iconserver = iconserver,
-            iconfarm = iconfarm,
-            countFaves = countFaves,
-            countComments = countComments
+            isfamily = isfamily
         )
     }
 

@@ -1,5 +1,6 @@
 package com.app.flickr.di
 
+import com.app.flickr.presentation.home.HomeFragment
 import com.app.flickr.presentation.login.LoginFragment
 import dagger.Component
 
@@ -12,4 +13,5 @@ interface AppComponent {
     }
 
     fun inject(loginFragment: LoginFragment)
+    fun inject(homeFragment: HomeFragment)
 }

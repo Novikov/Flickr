@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentHomeBinding
 import com.app.flickr.presentation.home.adapter.PhotosAdapter
 import com.app.flickr.utils.appComponent
+import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -57,7 +58,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun initRecycler() {
-        viewBinding?.photoRecycler?.layoutManager = LinearLayoutManager(context)
+        viewBinding?.photoRecycler?.layoutManager = GridLayoutManager(context, GRID_IMAGES_COUNT)
         viewBinding?.photoRecycler?.adapter = photosAdapter
     }
 

@@ -31,6 +31,7 @@ class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHol
     private lateinit var photoDataUI: PhotoDataUI
 
     fun bind(photoDataUI: PhotoDataUI) {
+        // TODO: Igor think how to remove getting photoUrl from here
         val photoUrl =
             "$PHOTO_LOAD_BASE_URL${photoDataUI.serverId}$SLASH${photoDataUI.photoId}$UNDERSCORE${photoDataUI.secret}$UNDERSCORE$IMAGE_THUMBNAIL_SUFFIX$JPG_FORMAT"
 

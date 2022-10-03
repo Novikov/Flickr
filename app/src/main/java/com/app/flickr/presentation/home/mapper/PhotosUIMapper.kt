@@ -1,6 +1,6 @@
 package com.app.flickr.presentation.home.mapper
 
-import com.app.domain.models.galleries.response.Photo
+import com.app.domain.models.interestingness.response.Photo
 import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.utils.const.IMAGE_THUMBNAIL_SUFFIX
 import javax.inject.Inject

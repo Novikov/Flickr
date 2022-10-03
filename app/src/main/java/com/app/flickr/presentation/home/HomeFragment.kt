@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentHomeBinding
 import com.app.flickr.presentation.home.adapter.PhotosAdapter
-import com.app.flickr.utils.appComponent
 import com.app.flickr.utils.const.GRID_IMAGES_COUNT
+import com.app.flickr.utils.ext.appComponent
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -35,7 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initAdapter()
-        viewModel.getInterestingnessPhotoList()
+        viewModel.getMostInterestingPhotoList()
     }
 
     private fun initAdapter() {

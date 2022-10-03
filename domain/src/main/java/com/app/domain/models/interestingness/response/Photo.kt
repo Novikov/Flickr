@@ -1,6 +1,6 @@
-package com.app.data.remote_data_source.api_service.galleries.models
+package com.app.domain.models.interestingness.response
 
-data class PhotoResponse(
+data class Photo(
     val id: String,
     val owner: String,
     val secret: String,

@@ -1,7 +1,7 @@
 package com.app.flickr.presentation.home
 
 import androidx.lifecycle.*
-import com.app.domain.use_case_api.galleries.GetPhotoListUseCase
+import com.app.domain.use_case_api.interestingness.GetMostInterestingPhotosUseCase
 import com.app.flickr.presentation.home.mapper.PhotosUIMapper
 import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.utils.logErrorIfDebug
@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val getPhotoListUseCase: GetPhotoListUseCase,
+    private val getPhotoListUseCase: GetMostInterestingPhotosUseCase,
     private val photosUIMapper: PhotosUIMapper
 ) :
     ViewModel() {
@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
 
     @Suppress("UNCHECKED_CAST")
     class Factory(
-        private val getPhotoListUseCase: GetPhotoListUseCase,
+        private val getPhotoListUseCase: GetMostInterestingPhotosUseCase,
         private val photosUIMapper: PhotosUIMapper
     ) :
         ViewModelProvider.Factory {
@@ -43,7 +43,7 @@ class HomeViewModel @Inject constructor(
         }
 
         class NestedFactory @Inject constructor(
-            val getPhotoListUseCase: GetPhotoListUseCase,
+            val getPhotoListUseCase: GetMostInterestingPhotosUseCase,
             val photosUIMapper: PhotosUIMapper
         ) {
             fun create(): HomeViewModel.Factory {

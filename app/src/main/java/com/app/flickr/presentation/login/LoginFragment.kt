@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentLoginBinding
 import com.app.flickr.utils.appComponent
-import com.app.flickr.utils.onClick
+import com.app.flickr.utils.ext.onClick
 import javax.inject.Inject
 
 class LoginFragment : Fragment(R.layout.fragment_login) {

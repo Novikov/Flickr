@@ -12,4 +12,6 @@ object ApiConst {
             "&nojsoncallback=1"
 
     const val INTERESTING_PHOTO_METHOD = "?method=flickr.interestingness.getList"
+
+    const val PHOTO_LOAD_BASE_URL = "https://live.staticflickr.com/"
 }

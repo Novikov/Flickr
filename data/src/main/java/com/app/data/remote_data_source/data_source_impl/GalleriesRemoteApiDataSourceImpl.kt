@@ -12,6 +12,6 @@ class GalleriesRemoteApiDataSourceImp @Inject constructor(
 ) : GalleriesRemoteApiDataSource {
     override suspend fun getPhotoList(): Photos {
         val response = galleryApiService.getInterestingnessPhotos()
-        return galleriesMapper.toPhotos(response)
+        return galleriesMapper.toPhotos(response.photos)
     }
 }

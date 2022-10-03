@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentLoginBinding
-import com.app.flickr.utils.appComponent
-import com.app.flickr.utils.ext.onClick
+import com.app.flickr.utils.ext.appComponent
 import javax.inject.Inject
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -36,13 +35,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     ): View? {
         viewBinding = FragmentLoginBinding.inflate(inflater, container, false)
         return viewBinding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewBinding?.button?.onClick {
-            viewModel.getRequestToken()
-        }
     }
 
     override fun onDestroyView() {

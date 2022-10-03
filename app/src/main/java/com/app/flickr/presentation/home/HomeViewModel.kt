@@ -1,6 +1,5 @@
 package com.app.flickr.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.app.domain.use_case_api.galleries.GetPhotoListUseCase
 import com.app.flickr.presentation.home.mapper.PhotosUIMapper
@@ -19,12 +18,11 @@ class HomeViewModel @Inject constructor(
     val photosLiveData: LiveData<List<PhotoDataUI>>
         get() = photosMutableLiveData
 
-    fun getInterestingnessPhotoList() {
+    fun getMostInterestingPhotoList() {
         viewModelScope.launch {
             runCatching {
                 getPhotoListUseCase.invoke()
             }.onSuccess { photos ->
-                Log.i("ASDASDSAD", "$photos")
                 val photosDataUIList = photos.photo.map(photosUIMapper::toPhotoDataUI)
                 photosMutableLiveData.postValue(photosDataUIList)
             }

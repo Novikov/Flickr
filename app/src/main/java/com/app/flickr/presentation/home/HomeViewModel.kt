@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.app.domain.use_case_api.interestingness.GetMostInterestingPhotosUseCase
 import com.app.flickr.presentation.home.mapper.PhotosUIMapper
 import com.app.flickr.presentation.home.model.PhotoDataUI
+import com.app.flickr.utils.ext.logErrorIfDebug
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -21,8 +22,11 @@ class HomeViewModel @Inject constructor(
     val photosLiveData: LiveData<List<PhotoDataUI>>
         get() = photosMutableLiveData
 
+    private val compositeDisposable = CompositeDisposable()
+
+    // TODO: Igor think about schedulers
     fun getMostInterestingPhotoList() {
-        CompositeDisposable().add(
+        compositeDisposable.add(
             getPhotoListUseCase.invoke()
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
@@ -30,9 +34,14 @@ class HomeViewModel @Inject constructor(
                     val photosDataUIList = it.photo.map(photosUIMapper::toPhotoDataUI)
                     photosMutableLiveData.postValue(photosDataUIList)
                 }, {
-                    throw (it) // TODO: Igor fix
+                    logErrorIfDebug(it)
                 })
         )
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 
     @Suppress("UNCHECKED_CAST")

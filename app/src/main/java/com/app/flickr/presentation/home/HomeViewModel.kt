@@ -1,11 +1,14 @@
 package com.app.flickr.presentation.home
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.app.domain.use_case_api.interestingness.GetMostInterestingPhotosUseCase
 import com.app.flickr.presentation.home.mapper.PhotosUIMapper
 import com.app.flickr.presentation.home.model.PhotoDataUI
-import com.app.flickr.utils.logErrorIfDebug
-import kotlinx.coroutines.launch
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -19,17 +22,17 @@ class HomeViewModel @Inject constructor(
         get() = photosMutableLiveData
 
     fun getMostInterestingPhotoList() {
-        viewModelScope.launch {
-            runCatching {
-                getPhotoListUseCase.invoke()
-            }.onSuccess { photos ->
-                val photosDataUIList = photos.photo.map(photosUIMapper::toPhotoDataUI)
-                photosMutableLiveData.postValue(photosDataUIList)
-            }
-                .onFailure {
-                    logErrorIfDebug(it)
-                }
-        }
+        CompositeDisposable().add(
+            getPhotoListUseCase.invoke()
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    val photosDataUIList = it.photo.map(photosUIMapper::toPhotoDataUI)
+                    photosMutableLiveData.postValue(photosDataUIList)
+                }, {
+                    throw (it) // TODO: Igor fix
+                })
+        )
     }
 
     @Suppress("UNCHECKED_CAST")

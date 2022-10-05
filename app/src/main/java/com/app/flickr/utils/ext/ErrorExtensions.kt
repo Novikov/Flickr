@@ -1,4 +1,4 @@
-package com.app.flickr.utils
+package com.app.flickr.utils.ext
 
 import com.app.data.BuildConfig
 

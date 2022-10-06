@@ -1,4 +1,4 @@
-package com.app.data.remote_data_source.api_service.interestingness.models
+package com.app.data.remote_data_source.data_source_impl.interestingness.models
 
 import com.squareup.moshi.Json
 

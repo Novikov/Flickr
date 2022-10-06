@@ -1,7 +1,5 @@
-package com.app.data.remote_data_source.data_source_impl
+package com.app.data.remote_data_source.data_source_impl.interestingness
 
-import com.app.data.remote_data_source.api_service.interestingness.InterestingnessApiService
-import com.app.data.remote_data_source.api_service.interestingness.InterestingnessMapper
 import com.app.data.remote_data_source.data_source_api.InterestingnessRemoteApiDataSource
 import com.app.domain.models.interestingness.response.Photos
 import io.reactivex.Single

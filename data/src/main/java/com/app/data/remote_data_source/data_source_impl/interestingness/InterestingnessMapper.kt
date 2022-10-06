@@ -1,7 +1,7 @@
-package com.app.data.remote_data_source.api_service.interestingness
+package com.app.data.remote_data_source.data_source_impl.interestingness
 
-import com.app.data.remote_data_source.api_service.interestingness.models.PhotoResponse
-import com.app.data.remote_data_source.api_service.interestingness.models.PhotosResponse
+import com.app.data.remote_data_source.data_source_impl.interestingness.models.PhotoResponse
+import com.app.data.remote_data_source.data_source_impl.interestingness.models.PhotosResponse
 import com.app.domain.models.interestingness.response.Photo
 import com.app.domain.models.interestingness.response.Photos
 import javax.inject.Inject

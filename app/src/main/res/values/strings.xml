@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Flickr</string>
+    <string name="search">search</string>
+    <string name="save">save</string>
 </resources>

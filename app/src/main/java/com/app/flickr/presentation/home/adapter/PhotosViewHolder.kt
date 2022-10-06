@@ -28,8 +28,6 @@ class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHol
         }
     }
 
-    private lateinit var photoDataUI: PhotoDataUI
-
     fun bind(photoDataUI: PhotoDataUI) {
         // TODO: Igor think how to remove getting photoUrl from here
         val photoUrl =

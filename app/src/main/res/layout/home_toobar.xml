@@ -2,6 +2,10 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:navigationIcon="@drawable/ic_burger_button"
+    app:menu="@menu/home_menu"
+    app:title="@string/app_name">
 
 </androidx.appcompat.widget.Toolbar>

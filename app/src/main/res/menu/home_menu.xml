@@ -4,13 +4,13 @@
 
     <item
         android:title="@string/search"
-        android:id="@+id/search"
+        android:id="@+id/item_search"
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom" />
 
     <item
         android:title="@string/save"
-        android:id="@+id/save"
+        android:id="@+id/item_saved"
         android:icon="@drawable/ic_save"
         app:showAsAction="ifRoom" />
 

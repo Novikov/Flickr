@@ -1,6 +1,6 @@
-package com.app.data.remote_data_source.api_service.interestingness
+package com.app.data.remote_data_source.data_source_impl.interestingness
 
-import com.app.data.remote_data_source.api_service.interestingness.models.PhotosResultResponse
+import com.app.data.remote_data_source.data_source_impl.interestingness.models.PhotosResultResponse
 import com.app.data.remote_data_source.network_const.ApiConst.API_BODY
 import com.app.data.remote_data_source.network_const.ApiConst.INTERESTING_PHOTO_METHOD
 import io.reactivex.Single

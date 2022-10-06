@@ -1,18 +1,22 @@
 package com.app.data.remote_data_source.data_source_impl.di
 
-import com.app.data.local_data_source.local_data_source_api.FlickrLocalApiDataSource
-import com.app.data.local_data_source.local_data_source_impl.FlickrLocalApiDataSourceImpl
-import com.app.data.remote_data_source.api_service.interestingness.di.InterestingnessModule
 import com.app.data.remote_data_source.data_source_api.InterestingnessRemoteApiDataSource
-import com.app.data.remote_data_source.data_source_impl.InterestingnessRemoteApiDataSourceImp
+import com.app.data.remote_data_source.data_source_api.PhotosRemoteApiDataSource
+import com.app.data.remote_data_source.data_source_impl.interestingness.InterestingnessRemoteApiDataSourceImp
+import com.app.data.remote_data_source.data_source_impl.interestingness.di.InterestingnessModule
+import com.app.data.remote_data_source.data_source_impl.photos.PhotosRemoteApiDataSourceImpl
+import com.app.data.remote_data_source.data_source_impl.photos.di.PhotosModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [InterestingnessModule::class])
+@Module(includes = [InterestingnessModule::class, PhotosModule::class])
 interface RemoteDataSourceModule {
-    @Binds
-    fun bindFlickrLocalApiDataSourceImpl_to_FlickrLocalApiDataSource(flickrLocalApiDataSourceImpl: FlickrLocalApiDataSourceImpl): FlickrLocalApiDataSource
 
     @Binds
-    fun bindFlickrRemoteApiDataSourceImpl_to_FlickrRemoteApiDataSource(flickrRemoteApiDataSourceImp: InterestingnessRemoteApiDataSourceImp): InterestingnessRemoteApiDataSource
+    fun bindInterestingRemoteApiDataSourceImpl_to_InterestingRemoteApiDataSource(
+        interestinggRemoteApiDataSource: InterestingnessRemoteApiDataSourceImp
+    ): InterestingnessRemoteApiDataSource
+
+    @Binds
+    fun bindPhotosRemoteDataSourceImpl_to_PhotosRemoteDataSource(photosRemoteApiDataSourceImpl: PhotosRemoteApiDataSourceImpl): PhotosRemoteApiDataSource
 }

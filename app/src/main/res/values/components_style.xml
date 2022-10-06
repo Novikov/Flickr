@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppEditText" parent="Widget.AppCompat.EditText" />
+
+    <style name="FlickrInputTextViewStyle" parent="AppEditText">
+        <item name="android:padding">@dimen/grid_2</item>
+        <item name="android:textColorHint">@color/dark_gray</item>
+        <item name="android:textAppearance">@style/Body.Body2</item>
+    </style>
+
+    <style name="RootLayout">
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+</resources>

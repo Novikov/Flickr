@@ -92,4 +92,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewBinding = null
         super.onDestroyView()
     }
+
+    override fun onDestroy() {
+        photosAdapter = null
+        super.onDestroy()
+    }
 }

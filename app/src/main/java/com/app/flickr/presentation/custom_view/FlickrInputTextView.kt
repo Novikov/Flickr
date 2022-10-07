@@ -11,6 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import com.app.flickr.R
 import com.app.flickr.databinding.FlickrInputTextViewBinding
 import com.app.flickr.utils.const.DEFAULT_STYLE_ATTRS
+import com.app.flickr.utils.const.EMPTY_STRING
 import com.app.flickr.utils.const.SINGLE_LINE_TEXT
 import com.app.flickr.utils.ext.logErrorIfDebug
 import com.app.flickr.utils.ext.onClick
@@ -30,7 +31,7 @@ class FlickrInputTextView @JvmOverloads constructor(
         }
 
     init {
-        addTextChangedListener()
+        addDefaultTextChangedListener()
         addListeners()
         context.obtainStyledAttributes(attrs, R.styleable.FlickrInputTextView).apply {
             try {
@@ -54,7 +55,7 @@ class FlickrInputTextView @JvmOverloads constructor(
         }
     }
 
-    private fun addTextChangedListener() {
+    private fun addDefaultTextChangedListener() {
         binding.input.addTextChangedListener {
             binding.deleteTextButton.isVisible = it != null && it.isNotEmpty()
         }
@@ -62,9 +63,14 @@ class FlickrInputTextView @JvmOverloads constructor(
 
     private fun addListeners() {
         binding.deleteTextButton.onClick {
-            binding.input.setText("")
+            binding.input.setText(EMPTY_STRING)
         }
     }
+
+    fun addCustomTextAndFocusChangedListener(listener: ((String) -> Unit)? = null) =
+        with(binding.input) {
+            addTextChangedListener { listener?.invoke(it.toString()) }
+        }
 
     override fun dispatchSaveInstanceState(container: SparseArray<Parcelable>) {
         dispatchFreezeSelfOnly(container)

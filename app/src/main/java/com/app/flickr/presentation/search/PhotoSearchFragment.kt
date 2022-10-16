@@ -2,7 +2,6 @@ package com.app.flickr.presentation.search
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,15 +89,18 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.photosLiveData.observe(viewLifecycleOwner) { content ->
             when (content) {
                 is Result.Success<Any> -> {
-                    val result = content.result as List<PhotoDataUI>
-                    Log.i("ASDASDASDASKKKKK", "$result")
+                    viewBinding?.errorMessage?.visibility = View.GONE
+                    viewBinding?.loader?.visibility = View.GONE
+                    val result = content.result as List<PhotoDataUI> // TODO: Igor think whe should be cast
                     photoSearchAdapter?.setItems(result)
                 }
                 is Result.Error -> {
-                    Log.i("ASDASDASDASKKKKK", "error")
+                    viewBinding?.loader?.visibility = View.GONE
+                    viewBinding?.errorMessage?.visibility = View.VISIBLE
                 }
                 is Result.Loading -> {
-                    Log.i("ASDASDASDASKKKKK", "loading")
+                    viewBinding?.errorMessage?.visibility = View.GONE
+                    viewBinding?.loader?.visibility = View.VISIBLE
                 }
             }
         }

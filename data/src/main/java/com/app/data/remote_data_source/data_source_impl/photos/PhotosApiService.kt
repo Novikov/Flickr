@@ -1,7 +1,7 @@
 package com.app.data.remote_data_source.data_source_impl.photos
 
 import com.app.data.remote_data_source.data_source_impl.photos.models.PhotosSearchResponse
-import com.app.data.remote_data_source.network_const.ApiConst
+import com.app.data.remote_data_source.utils.ApiConst
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -3,9 +3,9 @@ package com.app.flickr.presentation.search.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.data.remote_data_source.network_const.ApiConst.PHOTO_LOAD_BASE_URL
-import com.app.data.remote_data_source.network_const.NetworkConst.SLASH
-import com.app.data.remote_data_source.network_const.NetworkConst.UNDERSCORE
+import com.app.data.remote_data_source.utils.ApiConst.PHOTO_LOAD_BASE_URL
+import com.app.data.remote_data_source.utils.NetworkConst.SLASH
+import com.app.data.remote_data_source.utils.NetworkConst.UNDERSCORE
 import com.app.flickr.databinding.PhotoListItemBinding
 import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.utils.const.IMAGE_THUMBNAIL_SUFFIX

@@ -1,8 +1,8 @@
 package com.app.data.remote_data_source.data_source_impl.interestingness
 
 import com.app.data.remote_data_source.data_source_impl.interestingness.models.PhotosResultResponse
-import com.app.data.remote_data_source.network_const.ApiConst.API_BODY
-import com.app.data.remote_data_source.network_const.ApiConst.INTERESTING_PHOTO_METHOD
+import com.app.data.remote_data_source.utils.ApiConst.API_BODY
+import com.app.data.remote_data_source.utils.ApiConst.INTERESTING_PHOTO_METHOD
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

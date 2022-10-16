@@ -13,6 +13,7 @@ class PhotoSearchAdapter :
         photoList.clear()
         photoList.addAll(photos)
         submitList(photoList)
+        notifyDataSetChanged() // TODO: Igor think how it should work
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoSearchViewHolder {

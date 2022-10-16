@@ -2,6 +2,7 @@ package com.app.flickr.presentation.search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.app.data.remote_data_source.data_source_impl.base.Result
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentSearchBinding
+import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.presentation.search.adapter.PhotoSearchAdapter
 import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import com.app.flickr.utils.ext.appComponent
@@ -85,7 +88,19 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun setObservers() {
         viewModel.photosLiveData.observe(viewLifecycleOwner) { content ->
-            photoSearchAdapter?.setItems(content)
+            when (content) {
+                is Result.Success<Any> -> {
+                    val result = content.result as List<PhotoDataUI>
+                    Log.i("ASDASDASDASKKKKK", "$result")
+                    photoSearchAdapter?.setItems(result)
+                }
+                is Result.Error -> {
+                    Log.i("ASDASDASDASKKKKK", "error")
+                }
+                is Result.Loading -> {
+                    Log.i("ASDASDASDASKKKKK", "loading")
+                }
+            }
         }
     }
 

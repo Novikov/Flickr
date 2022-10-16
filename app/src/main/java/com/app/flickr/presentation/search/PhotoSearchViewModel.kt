@@ -4,12 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.app.data.remote_data_source.data_source_impl.base.Result
+import com.app.data.remote_data_source.utils.asResult
+import com.app.data.remote_data_source.utils.replayRefcount
+import com.app.domain.models.interestingness.response.Photos
 import com.app.domain.use_case_api.interestingness.SearchPhotoUseCase
-import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.presentation.search.mapper.PhotoSearchUIMapper
-import com.app.flickr.utils.ext.logErrorIfDebug
+import com.app.flickr.utils.const.EMPTY_STRING
+import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.cast
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
 class PhotoSearchViewModel @Inject constructor(
@@ -17,24 +24,65 @@ class PhotoSearchViewModel @Inject constructor(
     val photosSearchUIMapper: PhotoSearchUIMapper
 ) : ViewModel() {
 
-    private val photosMutableLiveData = MutableLiveData<List<PhotoDataUI>>()
-    val photosLiveData: LiveData<List<PhotoDataUI>>
+    private val photosMutableLiveData = MutableLiveData<Result<Any>>()
+    val photosLiveData: LiveData<Result<Any>>
         get() = photosMutableLiveData
 
     val compositeDisposable = CompositeDisposable()
 
-    fun searchPhoto(query: String) {
+    private val querySubject: BehaviorSubject<String> = BehaviorSubject.createDefault(EMPTY_STRING)
+
+    init {
+        val queryFlowable = querySubject.toFlowable(BackpressureStrategy.DROP)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .switchMap {
+                searchPhotoUseCase.invoke(it)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .asResult()
+            }
+            .replayRefcount()
+
+        val querySuccess = queryFlowable.filter { it is Result.Success }
+            .cast<Result.Success<Photos>>()
+            .replayRefcount()
+
+        val queryError = queryFlowable.filter { it is Result.Error }
+            .cast<Result.Error>()
+            .replayRefcount()
+
+        val queryLoading = queryFlowable.filter { it is Result.Loading }
+            .cast<Result.Loading>()
+            .replayRefcount()
+
         compositeDisposable.add(
-            searchPhotoUseCase.invoke(query)
-                .observeOn(Schedulers.io())
+            querySuccess
                 .subscribeOn(Schedulers.io())
-                .subscribe({
-                    val photosDataUIList = it.photo.map(photosSearchUIMapper::toPhotoDataUI)
-                    photosMutableLiveData.postValue(photosDataUIList)
-                }, {
-                    logErrorIfDebug(it)
-                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    val photosDataUIList = it.result.photo.map(photosSearchUIMapper::toPhotoDataUI)
+                    photosMutableLiveData.postValue(Result.Success(photosDataUIList))
+                }
         )
+
+        compositeDisposable.add(
+            queryError
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { photosMutableLiveData.postValue(it) }
+        )
+
+        compositeDisposable.add(
+            queryLoading
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { photosMutableLiveData.postValue(it) }
+        )
+    }
+
+    fun searchPhoto(query: String) {
+        querySubject.onNext(query)
     }
 
     override fun onCleared() {

@@ -12,16 +12,16 @@ import io.reactivex.annotations.SchedulerSupport
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
 @SchedulerSupport(SchedulerSupport.NONE)
-fun <T> Flowable<T>.asResult(isInitialResult: Boolean): Flowable<Result<T>> =
-    map { data -> Result.Success(isInitialResult, data) as Result<T> }
+fun <T> Flowable<T>.asResult(): Flowable<Result<T>> =
+    map { data -> Result.Success(data) as Result<T> }
         .onErrorReturn { throwable -> Result.Error(throwable) }
         .startWith(Result.Loading(isProgressBarVisible = true))
 
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
 @SchedulerSupport(SchedulerSupport.NONE)
-fun <T> Single<T>.asResult(showItemsCount: Boolean): Flowable<Result<T>> =
-    map { data -> Result.Success(showItemsCount, data) as Result<T> }
+fun <T> Single<T>.asResult(): Flowable<Result<T>> =
+    map { data -> Result.Success(data) as Result<T> }
         .onErrorReturn { throwable -> Result.Error(throwable) }
         .toFlowable()
         .startWith(Result.Loading(isProgressBarVisible = true))

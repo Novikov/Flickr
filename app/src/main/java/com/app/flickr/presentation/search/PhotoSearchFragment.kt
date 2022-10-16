@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.app.data.remote_data_source.data_source_impl.base.Result
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentSearchBinding
-import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.presentation.search.adapter.PhotoSearchAdapter
+import com.app.flickr.presentation.search.model.FoundPhotosList
 import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import com.app.flickr.utils.ext.appComponent
 import com.app.flickr.utils.ext.hideKeyboard
@@ -88,11 +88,10 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
     private fun setObservers() {
         viewModel.photosLiveData.observe(viewLifecycleOwner) { content ->
             when (content) {
-                is Result.Success<Any> -> {
+                is Result.Success<FoundPhotosList> -> {
+                    photoSearchAdapter?.setItems(content.result.data)
                     viewBinding?.errorMessage?.visibility = View.GONE
                     viewBinding?.loader?.visibility = View.GONE
-                    val result = content.result as List<PhotoDataUI> // TODO: Igor think whe should be cast
-                    photoSearchAdapter?.setItems(result)
                 }
                 is Result.Error -> {
                     viewBinding?.loader?.visibility = View.GONE

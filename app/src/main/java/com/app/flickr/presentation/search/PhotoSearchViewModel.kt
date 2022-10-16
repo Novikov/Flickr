@@ -10,6 +10,7 @@ import com.app.data.remote_data_source.utils.replayRefcount
 import com.app.domain.models.interestingness.response.Photos
 import com.app.domain.use_case_api.interestingness.SearchPhotoUseCase
 import com.app.flickr.presentation.search.mapper.PhotoSearchUIMapper
+import com.app.flickr.presentation.search.model.FoundPhotosList
 import com.app.flickr.utils.const.EMPTY_STRING
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,8 +25,9 @@ class PhotoSearchViewModel @Inject constructor(
     val photosSearchUIMapper: PhotoSearchUIMapper
 ) : ViewModel() {
 
-    private val photosMutableLiveData = MutableLiveData<Result<Any>>()
-    val photosLiveData: LiveData<Result<Any>>
+    private val photosMutableLiveData =
+        MutableLiveData<Result<FoundPhotosList>>() // TODO: Igor why is it not limiting live data
+    val photosLiveData: LiveData<Result<FoundPhotosList>>
         get() = photosMutableLiveData
 
     val compositeDisposable = CompositeDisposable()
@@ -36,6 +38,7 @@ class PhotoSearchViewModel @Inject constructor(
         val queryFlowable = querySubject.toFlowable(BackpressureStrategy.DROP)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .filter { it.isNotEmpty() }
             .switchMap {
                 searchPhotoUseCase.invoke(it)
                     .subscribeOn(Schedulers.io())
@@ -62,7 +65,8 @@ class PhotoSearchViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     val photosDataUIList = it.result.photo.map(photosSearchUIMapper::toPhotoDataUI)
-                    photosMutableLiveData.postValue(Result.Success(photosDataUIList))
+                    photosMutableLiveData.postValue(Result.Success(FoundPhotosList(photosDataUIList)))
+                    photosMutableLiveData.postValue(Result.Error(Exception()))
                 }
         )
 

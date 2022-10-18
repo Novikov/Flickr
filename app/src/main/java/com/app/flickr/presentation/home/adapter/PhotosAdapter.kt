@@ -12,7 +12,7 @@ class PhotosAdapter @Inject constructor() : ListAdapter<PhotoDataUI, PhotosViewH
     fun setItems(photos: List<PhotoDataUI>) {
         photoList.clear()
         photoList.addAll(photos)
-        submitList(photoList)
+        submitList(photos)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotosViewHolder {

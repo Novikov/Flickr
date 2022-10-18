@@ -21,13 +21,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var loginViewModelFactory: HomeViewModel.Factory.NestedFactory
 
+    @Inject
+    lateinit var photosAdapter: PhotosAdapter
+
     private var viewBinding: FragmentHomeBinding? = null
 
     private val viewModel: HomeViewModel by viewModels {
         loginViewModelFactory.create()
     }
-
-    private var photosAdapter: PhotosAdapter? = null
 
     override fun onAttach(context: Context) {
         requireContext().appComponent.inject(this)
@@ -36,12 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initAdapter()
         viewModel.getMostInterestingPhotoList()
-    }
-
-    private fun initAdapter() {
-        photosAdapter = PhotosAdapter()
     }
 
     override fun onCreateView(
@@ -90,10 +86,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onDestroyView() {
         viewBinding = null
         super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        photosAdapter = null
-        super.onDestroy()
     }
 }

@@ -1,4 +1,4 @@
-package com.app.data.remote_data_source.network_const
+package com.app.data.remote_data_source.utils
 
 object ApiConst {
     const val CONSUMER_KEY = "b06556858b6a7cefb7363e0deaaac1cd"

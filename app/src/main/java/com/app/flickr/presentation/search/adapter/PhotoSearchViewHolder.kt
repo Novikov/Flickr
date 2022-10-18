@@ -1,4 +1,4 @@
-package com.app.flickr.presentation.home.adapter
+package com.app.flickr.presentation.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,13 +12,13 @@ import com.app.flickr.utils.const.IMAGE_THUMBNAIL_SUFFIX
 import com.app.flickr.utils.const.JPG_FORMAT
 import com.bumptech.glide.Glide
 
-class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class PhotoSearchViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     companion object {
         fun onCreate(
             parent: ViewGroup
-        ): PhotosViewHolder {
-            return PhotosViewHolder(
+        ): PhotoSearchViewHolder {
+            return PhotoSearchViewHolder(
                 PhotoListItemBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,

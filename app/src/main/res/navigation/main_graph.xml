@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.app.flickr.presentation.search.SearchFragment"
+        android:name="com.app.flickr.presentation.search.PhotoSearchFragment"
         android:label="SearchFragment" />
 
 </navigation>

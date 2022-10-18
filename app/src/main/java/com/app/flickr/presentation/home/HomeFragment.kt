@@ -69,7 +69,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewBinding?.toolbar?.root?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.item_search -> {
-                    // TODO: Igor think how to implement effect
                     // TODO: Igor think how to add basic navigation cases
                     findNavController().navigate(R.id.searchFragment)
                     true

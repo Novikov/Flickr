@@ -21,13 +21,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var loginViewModelFactory: HomeViewModel.Factory.NestedFactory
 
+    @Inject
+    lateinit var photosAdapter: PhotosAdapter
+
     private var viewBinding: FragmentHomeBinding? = null
 
     private val viewModel: HomeViewModel by viewModels {
         loginViewModelFactory.create()
     }
-
-    private var photosAdapter: PhotosAdapter? = null
 
     override fun onAttach(context: Context) {
         requireContext().appComponent.inject(this)
@@ -36,12 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initAdapter()
         viewModel.getMostInterestingPhotoList()
-    }
-
-    private fun initAdapter() {
-        photosAdapter = PhotosAdapter()
     }
 
     override fun onCreateView(
@@ -69,7 +65,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewBinding?.toolbar?.root?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.item_search -> {
-                    // TODO: Igor think how to implement effect
                     // TODO: Igor think how to add basic navigation cases
                     findNavController().navigate(R.id.searchFragment)
                     true
@@ -91,10 +86,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onDestroyView() {
         viewBinding = null
         super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        photosAdapter = null
-        super.onDestroy()
     }
 }

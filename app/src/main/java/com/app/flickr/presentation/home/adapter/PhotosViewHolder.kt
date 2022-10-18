@@ -3,13 +3,9 @@ package com.app.flickr.presentation.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.data.remote_data_source.utils.ApiConst.PHOTO_LOAD_BASE_URL
-import com.app.data.remote_data_source.utils.NetworkConst.SLASH
-import com.app.data.remote_data_source.utils.NetworkConst.UNDERSCORE
 import com.app.flickr.databinding.PhotoListItemBinding
 import com.app.flickr.presentation.home.model.PhotoDataUI
-import com.app.flickr.utils.const.IMAGE_THUMBNAIL_SUFFIX
-import com.app.flickr.utils.const.JPG_FORMAT
+import com.app.flickr.utils.view_helpers.PhotoUrlBuilder
 import com.bumptech.glide.Glide
 
 class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -29,10 +25,11 @@ class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHol
     }
 
     fun bind(photoDataUI: PhotoDataUI) {
-        // TODO: Igor think how to remove getting photoUrl from here
-        val photoUrl =
-            "$PHOTO_LOAD_BASE_URL${photoDataUI.serverId}$SLASH${photoDataUI.photoId}$UNDERSCORE${photoDataUI.secret}$UNDERSCORE$IMAGE_THUMBNAIL_SUFFIX$JPG_FORMAT"
-
+        val photoUrl = PhotoUrlBuilder.buildPhotoUrl(
+            photoDataUI.serverId,
+            photoDataUI.photoId,
+            photoDataUI.secret
+        )
         Glide.with(binding.root.context)
             .load(photoUrl)
             .centerCrop()

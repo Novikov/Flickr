@@ -8,6 +8,7 @@ import com.app.domain.use_case_api.interestingness.GetMostInterestingPhotosUseCa
 import com.app.flickr.presentation.home.mapper.PhotosUIMapper
 import com.app.flickr.presentation.home.model.PhotoDataUI
 import com.app.flickr.utils.ext.logErrorIfDebug
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -24,12 +25,11 @@ class HomeViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    // TODO: Igor think about schedulers
     fun getMostInterestingPhotoList() {
         compositeDisposable.add(
             getPhotoListUseCase.invoke()
-                .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     val photosDataUIList = it.photo.map(photosUIMapper::toPhotoDataUI)
                     photosMutableLiveData.postValue(photosDataUIList)

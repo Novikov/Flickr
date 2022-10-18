@@ -69,7 +69,7 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun initListeners() {
         viewBinding?.backButton?.onClick {
-            findNavController().navigateUp() // TODO: Igor think how to implement navigation
+            findNavController().navigateUp()
         }
         viewBinding?.flickrInputTextView?.addCustomTextAndFocusChangedListener { query ->
             viewModel.searchPhoto(query = query)

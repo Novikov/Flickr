@@ -12,8 +12,7 @@ class PhotoSearchAdapter :
     fun setItems(photos: List<PhotoDataUI>) {
         photoList.clear()
         photoList.addAll(photos)
-        submitList(photoList)
-        notifyDataSetChanged() // TODO: Igor think how it should work
+        submitList(photos)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoSearchViewHolder {

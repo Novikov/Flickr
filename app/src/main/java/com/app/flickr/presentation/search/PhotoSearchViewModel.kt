@@ -66,7 +66,6 @@ class PhotoSearchViewModel @Inject constructor(
                 .subscribe {
                     val photosDataUIList = it.result.photo.map(photosSearchUIMapper::toPhotoDataUI)
                     photosMutableLiveData.postValue(Result.Success(FoundPhotosList(photosDataUIList)))
-                    photosMutableLiveData.postValue(Result.Error(Exception()))
                 }
         )
 

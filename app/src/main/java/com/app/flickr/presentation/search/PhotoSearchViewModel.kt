@@ -26,7 +26,7 @@ class PhotoSearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val photosMutableLiveData =
-        MutableLiveData<Result<FoundPhotosList>>() // TODO: Igor why is it not limiting live data
+        MutableLiveData<Result<FoundPhotosList>>()
     val photosLiveData: LiveData<Result<FoundPhotosList>>
         get() = photosMutableLiveData
 

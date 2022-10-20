@@ -81,8 +81,8 @@ class FlickrInputTextView @JvmOverloads constructor(
         dispatchThawSelfOnly(container)
     }
 
-    fun makeActive() {
-        binding.input.requestFocus()
-        binding.input.showKeyboard()
+    fun makeActive() = with(binding) {
+        input.requestFocus()
+        input.showKeyboard()
     }
 }

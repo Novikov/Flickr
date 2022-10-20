@@ -18,4 +18,6 @@ interface PhotosApiService {
         @Query("oauth_nonce") oauthNonce: String = "",
         @Query("oauth_signature") oauthSignature: String = ""
     ): Single<PhotosSearchResponse>
+
+    // TODO: Igor create filter
 }

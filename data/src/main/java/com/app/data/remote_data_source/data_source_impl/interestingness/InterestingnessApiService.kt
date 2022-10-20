@@ -18,4 +18,6 @@ interface InterestingnessApiService {
         @Query("oauth_nonce") oauthNonce: String = "",
         @Query("oauth_signature") oauthSignature: String = ""
     ): Single<PhotosResultResponse>
+
+    // TODO: Igor create filter
 }

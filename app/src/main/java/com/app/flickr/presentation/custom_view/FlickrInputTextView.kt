@@ -79,4 +79,8 @@ class FlickrInputTextView @JvmOverloads constructor(
     override fun dispatchRestoreInstanceState(container: SparseArray<Parcelable>) {
         dispatchThawSelfOnly(container)
     }
+
+    fun makeActive() {
+        binding.input.requestFocus()
+    }
 }

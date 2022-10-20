@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentHomeBinding
@@ -19,13 +21,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var loginViewModelFactory: HomeViewModel.Factory.NestedFactory
 
+    @Inject
+    lateinit var photosAdapter: PhotosAdapter
+
     private var viewBinding: FragmentHomeBinding? = null
 
     private val viewModel: HomeViewModel by viewModels {
         loginViewModelFactory.create()
     }
-
-    private var photosAdapter: PhotosAdapter? = null
 
     override fun onAttach(context: Context) {
         requireContext().appComponent.inject(this)
@@ -34,12 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initAdapter()
         viewModel.getMostInterestingPhotoList()
-    }
-
-    private fun initAdapter() {
-        photosAdapter = PhotosAdapter()
     }
 
     override fun onCreateView(
@@ -54,12 +52,29 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
+        initListeners()
         setObservers()
     }
 
     private fun initRecycler() {
         viewBinding?.photoRecycler?.layoutManager = GridLayoutManager(context, GRID_IMAGES_COUNT)
         viewBinding?.photoRecycler?.adapter = photosAdapter
+    }
+
+    private fun initListeners() {
+        viewBinding?.toolbar?.root?.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.item_search -> {
+                    // TODO: Igor think how to add basic navigation cases
+                    findNavController().navigate(R.id.searchFragment)
+                    true
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "saved photos", Toast.LENGTH_SHORT).show()
+                    false
+                }
+            }
+        }
     }
 
     private fun setObservers() {

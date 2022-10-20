@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlickrInputTextView">
+        <attr name="android:hint" format="string" />
+        <attr name="android:inputType" format="integer" />
+        <attr name="android:maxLines" format="integer" />
+    </declare-styleable>
+</resources>

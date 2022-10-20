@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Flickr</string>
+    <string name="search">search</string>
+    <string name="save">save</string>
+    <string name="title_description_or_text">Title, description or text</string>
+    <string name="something_went_wrong">Something went wrong!</string>
 </resources>

@@ -3,9 +3,9 @@ package com.app.data.di
 import com.app.data.BuildConfig
 import com.app.data.local_data_source.di.LocalDataSourceModule
 import com.app.data.remote_data_source.data_source_impl.di.RemoteDataSourceModule
-import com.app.data.remote_data_source.network_const.Endpoint
-import com.app.data.remote_data_source.network_const.Endpoints
-import com.app.data.remote_data_source.network_const.NetworkConst
+import com.app.data.remote_data_source.utils.Endpoint
+import com.app.data.remote_data_source.utils.Endpoints
+import com.app.data.remote_data_source.utils.NetworkConst
 import com.app.data.repository_impl.di.RepositoryModule
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

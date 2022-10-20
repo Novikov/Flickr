@@ -15,6 +15,7 @@ import com.app.flickr.utils.const.EMPTY_STRING
 import com.app.flickr.utils.const.SINGLE_LINE_TEXT
 import com.app.flickr.utils.ext.logErrorIfDebug
 import com.app.flickr.utils.ext.onClick
+import com.app.flickr.utils.ext.showKeyboard
 
 class FlickrInputTextView @JvmOverloads constructor(
     context: Context,
@@ -78,5 +79,10 @@ class FlickrInputTextView @JvmOverloads constructor(
 
     override fun dispatchRestoreInstanceState(container: SparseArray<Parcelable>) {
         dispatchThawSelfOnly(container)
+    }
+
+    fun makeActive() {
+        binding.input.requestFocus()
+        binding.input.showKeyboard()
     }
 }

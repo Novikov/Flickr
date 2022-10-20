@@ -18,6 +18,7 @@ import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import com.app.flickr.utils.ext.appComponent
 import com.app.flickr.utils.ext.hideKeyboard
 import com.app.flickr.utils.ext.onClick
+import com.app.flickr.utils.ext.showKeyboard
 import com.app.flickr.utils.view_helpers.OutsideTouchHelper
 import javax.inject.Inject
 
@@ -52,6 +53,7 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         initRecycler()
+        initSearchView()
         initListeners()
         setOutsideTouchHelper()
         setObservers()
@@ -65,6 +67,10 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
         viewBinding?.foundPhotoRecycler?.layoutManager =
             GridLayoutManager(context, GRID_IMAGES_COUNT)
         viewBinding?.foundPhotoRecycler?.adapter = photoSearchAdapter
+    }
+
+    private fun initSearchView() {
+        viewBinding?.flickrInputTextView?.makeActive()
     }
 
     private fun initListeners() {

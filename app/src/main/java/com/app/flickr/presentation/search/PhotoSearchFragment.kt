@@ -71,7 +71,7 @@ class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
 
     private fun initSearchView() {
         viewBinding?.flickrInputTextView?.makeActive()
-        showKeyboard()
+//        showKeyboard()
     }
 
     private fun initListeners() {

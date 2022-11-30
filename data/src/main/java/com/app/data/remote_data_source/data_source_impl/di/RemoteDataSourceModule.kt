@@ -11,7 +11,7 @@ import dagger.Module
 
 @Module(includes = [InterestingnessModule::class, PhotosModule::class])
 interface RemoteDataSourceModule {
-
+    // TODO: make this empty by moving 2 methods to relevant modules
     @Binds
     fun bindInterestingRemoteApiDataSourceImpl_to_InterestingRemoteApiDataSource(
         interestinggRemoteApiDataSource: InterestingnessRemoteApiDataSourceImp

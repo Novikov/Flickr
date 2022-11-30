@@ -21,6 +21,8 @@ import java.util.concurrent.TimeUnit
 
 @Module(includes = [RemoteDataSourceModule::class, LocalDataSourceModule::class, RepositoryModule::class])
 object DataModule {
+    // TODO: Move all to relevant module
+
     @Provides
     fun provideMoshi(): Moshi {
         return Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()

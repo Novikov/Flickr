@@ -7,3 +7,5 @@ import dagger.Module
 
 @Module(includes = [HomeModule::class, LoginModule::class, PhotoSearchModule::class])
 interface PresentationModule
+
+// TODO: Think is need separate viewmodules module or make all binds in single module

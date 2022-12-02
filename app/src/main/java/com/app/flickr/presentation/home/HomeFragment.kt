@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.flickr.R
@@ -18,16 +17,14 @@ import com.app.flickr.utils.ext.appComponent
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    @Inject
-    lateinit var loginViewModelFactory: HomeViewModel.Factory.NestedFactory
 
     @Inject
     lateinit var photosAdapter: PhotosAdapter
 
     private var viewBinding: FragmentHomeBinding? = null
 
-    private val viewModel: HomeViewModel by viewModels {
-        loginViewModelFactory.create()
+    private val viewModel: HomeViewModel by lazy {
+        requireContext().appComponent.factory.create(HomeViewModel::class.java)
     }
 
     override fun onAttach(context: Context) {

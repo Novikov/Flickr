@@ -1,12 +1,10 @@
 package com.app.flickr.presentation.search
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.app.data.remote_data_source.data_source_impl.base.Result
@@ -18,27 +16,17 @@ import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import com.app.flickr.utils.ext.appComponent
 import com.app.flickr.utils.ext.hideKeyboard
 import com.app.flickr.utils.ext.onClick
-import com.app.flickr.utils.ext.showKeyboard
 import com.app.flickr.utils.view_helpers.OutsideTouchHelper
-import javax.inject.Inject
 
 class PhotoSearchFragment : Fragment(R.layout.fragment_search) {
 
-    @Inject
-    lateinit var photoSearchViewModelFactory: PhotoSearchViewModel.Factory.NestedFactory
-
-    private val viewModel: PhotoSearchViewModel by viewModels {
-        photoSearchViewModelFactory.create()
+    private val viewModel: PhotoSearchViewModel by lazy {
+        requireContext().appComponent.factory.create(PhotoSearchViewModel::class.java)
     }
 
     private var viewBinding: FragmentSearchBinding? = null
 
     private var photoSearchAdapter: PhotoSearchAdapter? = null
-
-    override fun onAttach(context: Context) {
-        requireContext().appComponent.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

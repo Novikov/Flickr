@@ -3,7 +3,6 @@ package com.app.flickr.presentation.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.app.data.remote_data_source.data_source_impl.base.Result
 import com.app.data.remote_data_source.utils.asResult
 import com.app.data.remote_data_source.utils.replayRefcount
@@ -91,25 +90,5 @@ class PhotoSearchViewModel @Inject constructor(
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(
-        private val searchPhotoUseCase: SearchPhotoUseCase,
-        private val photosUIMapper: PhotoSearchUIMapper
-    ) :
-        ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return PhotoSearchViewModel(searchPhotoUseCase, photosUIMapper) as T
-        }
-
-        class NestedFactory @Inject constructor(
-            val searchPhotoUseCase: SearchPhotoUseCase,
-            val photosUIMapper: PhotoSearchUIMapper
-        ) {
-            fun create(): PhotoSearchViewModel.Factory {
-                return PhotoSearchViewModel.Factory(searchPhotoUseCase, photosUIMapper)
-            }
-        }
     }
 }

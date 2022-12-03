@@ -1,5 +1,6 @@
 package com.app.flickr.di
 
+import com.app.flickr.presentation.detail.DetailFragment
 import com.app.flickr.presentation.di.MultiViewModelFactory
 import com.app.flickr.presentation.home.HomeFragment
 import com.app.flickr.presentation.login.LoginFragment
@@ -18,4 +19,5 @@ interface AppComponent {
     fun inject(loginFragment: LoginFragment)
     fun inject(homeFragment: HomeFragment)
     fun inject(homeFragment: PhotoSearchFragment)
+    fun inject(detailFragment: DetailFragment)
 }

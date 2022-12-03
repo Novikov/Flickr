@@ -2,9 +2,12 @@ package com.app.flickr.presentation.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.app.flickr.databinding.PhotoListItemBinding
+import com.app.flickr.presentation.home.HomeFragmentDirections
 import com.app.flickr.presentation.home.model.PhotoDataUI
+import com.app.flickr.utils.ext.onClick
 import com.app.flickr.utils.view_helpers.PhotoUrlBuilder
 import com.bumptech.glide.Glide
 
@@ -34,5 +37,10 @@ class PhotosViewHolder(val binding: PhotoListItemBinding) : RecyclerView.ViewHol
             .load(photoUrl)
             .centerCrop()
             .into(binding.photo)
+        binding.root.onClick {
+            val directions =
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(photoDataUI.photoId)
+            Navigation.findNavController(binding.root).navigate(directions)
+        }
     }
 }

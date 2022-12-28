@@ -1,6 +1,6 @@
 package com.app.data.remote_data_source.utils
 
-import com.app.data.remote_data_source.data_source_impl.base.Result
+import com.app.data.remote_data_source.data_source_impl.interestingness.base.Result
 import com.app.data.remote_data_source.utils.NetworkConst.INITIAL_BUFFER_SIZE
 import io.reactivex.Flowable
 import io.reactivex.Single

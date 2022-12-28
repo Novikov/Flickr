@@ -6,4 +6,5 @@ object NetworkConst {
     const val UNDERSCORE = "_"
 
     const val INITIAL_BUFFER_SIZE = 1
+    const val NEXT_PAGE_COUNTER = 1
 }

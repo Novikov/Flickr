@@ -1,4 +1,4 @@
-package com.app.data.remote_data_source.data_source_impl.base
+package com.app.data.remote_data_source.data_source_impl.interestingness.base
 
 sealed class Result<out T> {
     data class Success<T>(val result: T) : Result<T>()

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.app.data.remote_data_source.data_source_impl.base.Result
+import com.app.data.remote_data_source.data_source_impl.interestingness.base.Result
 import com.app.flickr.R
 import com.app.flickr.databinding.FragmentSearchBinding
 import com.app.flickr.presentation.search.adapter.PhotoSearchAdapter

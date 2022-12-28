@@ -9,3 +9,5 @@ import dagger.Module
 object AppModule
 
 // TODO: 1)remove lateinit 2)remove excess dependencies from app module
+
+// TODO: exclude presentation to separate module

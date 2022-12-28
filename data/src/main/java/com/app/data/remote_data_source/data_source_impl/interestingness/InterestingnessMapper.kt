@@ -11,22 +11,18 @@ class InterestingnessMapper @Inject constructor() {
         return Photo(
             id = id,
             owner = owner,
-            secret = secret,
-            server = server,
-            farm = farm,
             title = title,
-            ispublic = ispublic,
-            isfriend = isfriend,
-            isfamily = isfamily
+            secret = secret,
+            server = server
         )
     }
 
     fun toPhotos(photosResponse: PhotosResponse): Photos = with(photosResponse) {
         return Photos(
-            page = page,
-            pages = pages,
-            perpage = perpage,
-            total = total,
+            page = page.toInt(),
+            pages = pages.toInt(),
+            perpage = perpage.toInt(),
+            total = total.toInt(),
             photo = photo.map(::toPhoto)
         )
     }

@@ -14,6 +14,7 @@ import com.app.flickr.databinding.FragmentHomeBinding
 import com.app.flickr.presentation.home.adapter.PhotosAdapter
 import com.app.flickr.utils.const.GRID_IMAGES_COUNT
 import com.app.flickr.utils.ext.appComponent
+import com.app.flickr.utils.pagination.RecyclerPagination
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -76,12 +77,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setObservers() {
         viewModel.photosLiveData.observe(viewLifecycleOwner) { content ->
-            photosAdapter?.setItems(content)
+            photosAdapter.setItems(content)
+            addPaginationListener()
         }
+    }
+
+    private fun addPaginationListener() {
+        RecyclerPagination.scroll(
+            viewBinding?.photoRecycler,
+            viewModel::getMostInterestingPhotoList
+        )
     }
 
     override fun onDestroyView() {
         viewBinding = null
+        RecyclerPagination.removeListener()
         super.onDestroyView()
     }
 }

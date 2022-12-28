@@ -3,7 +3,7 @@ package com.app.flickr.presentation.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.data.remote_data_source.data_source_impl.base.Result
+import com.app.data.remote_data_source.data_source_impl.interestingness.base.Result
 import com.app.data.remote_data_source.utils.asResult
 import com.app.data.remote_data_source.utils.replayRefcount
 import com.app.domain.models.interestingness.response.Photos

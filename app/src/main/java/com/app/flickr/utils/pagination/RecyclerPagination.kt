@@ -1,6 +1,5 @@
 package com.app.flickr.utils.pagination
 
-import android.util.Log
 import androidx.annotation.IntRange
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,11 +30,6 @@ object RecyclerPagination {
                     val currentIndex = adapter.itemCount - CORRECTION_POSITION
                     val updatePosition =
                         currentIndex - itemBeforeLoad
-
-                    Log.i(
-                        "pagination",
-                        "onScrolled: lastVisibleItemPosition - $lastVisibleItemPosition, currentIndex - $currentIndex, update position - $updatePosition"
-                    )
 
                     if (lastVisibleItemPosition >= updatePosition) {
                         recyclerView.removeOnScrollListener(this)
